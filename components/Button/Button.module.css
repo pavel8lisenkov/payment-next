@@ -1,0 +1,25 @@
+.button {
+  width: 100%;
+  padding: 13px;
+  border-radius: 8px;
+  background: #00afefd5;
+  font-size: 18px;
+  font-weight: 400;
+  color: #ffffff;
+  transition: .2s ease-in-out;
+}
+
+.button:hover(:not(:disabled)) {
+  background: #00aeef;
+  -webkit-box-shadow: 0 0 5px #00aeef;
+  -moz-box-shadow: 0 0 5px #00aeef;
+  box-shadow: 0 0 5px #00aeef;
+}
+
+.button:active(:not(:disabled)) {
+  transform: scale(0.96);
+}
+
+.button:disabled {
+  background: rgba(0, 0, 0, 0.4);
+}

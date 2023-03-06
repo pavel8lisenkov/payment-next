@@ -1,0 +1,46 @@
+.button_close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  transition: ease 0.5s;
+}
+
+.button_close::before,
+.button_close::after {
+  content: '';
+  position: absolute;
+  top: 10px;
+  display: block;
+  width: 20px;
+  height: 3px;
+  background: #000;
+}
+
+.button_close::before {
+  transform: rotate(45deg);
+}
+
+.button_close::after {
+  transform: rotate(-45deg);
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loader {
+  border: 10px solid #9b2b2b;
+  border-top: 10px solid #3498db;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  animation: spin 1s linear infinite;
+}
