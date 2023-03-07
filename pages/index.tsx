@@ -6,12 +6,19 @@ import Title from '@/components/Title/Title';
 import Link from 'next/link';
 
 export const getStaticProps = async () => {
-  const res = await fetch('http://localhost:5000/items');
-  const data = await res.json();
+  try {
+    const res = await fetch('http://localhost:5000/items');
+    const data = await res.json();
 
-  return {
-    props: { operators: data }
+    return {
+      props: { operators: data }
+    }
+  } catch {
+    return {
+      props: { operators: null }
+    }
   }
+
 }
 
 const Home = ( {operators}: any ) => {
