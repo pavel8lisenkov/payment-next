@@ -10,29 +10,41 @@ import ButtonClose from '@/components/Button-close/Button-close';
 import { GetStaticProps } from 'next';
 
 export const getStaticPaths = async () => {
-  const res = await fetch('http://localhost:5000/items');
-  const data = await res.json();
+  try {
+    const res = await fetch('http://localhost:5000/items');
+    const data = await res.json();
 
-  const paths = data.map((operator: any) => {
+    const paths = data.map((operator: any) => {
+      return {
+        params: {id: operator.id}
+      }
+    })
+
     return {
-      params: {id: operator.id}
+      paths,
+      fallback: false
     }
-  })
-
-  return {
-    paths,
-    fallback: false
+  } catch {
+    return {
+      params: {id: null}
+    }
   }
 }
 
 export const getStaticProps:GetStaticProps = async (context: any) => {
-  const id = context.params.id;
+  try {
+    const id = context.params.id;
 
-  const res = await fetch(`http://localhost:5000/items/${id}`);
-  const data = await res.json();
+    const res = await fetch(`http://localhost:5000/items/${id}`);
+    const data = await res.json();
 
-  return {
-    props: { operator: data }
+    return {
+      props: { operator: data }
+    }
+  } catch {
+    return {
+      props: { operator: null }
+    }
   }
 }
 
