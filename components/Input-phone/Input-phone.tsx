@@ -1,20 +1,25 @@
 import React from "react";
 import s from './Input-phone.module.css';
 
-const InputPhone = ({phoneValue, setPhoneValue}: { phoneValue: any, setPhoneValue: any }) => {
+type IInputPhoneProps = {
+  phoneValue: string,
+  setPhoneValue: any
+}
 
-  const pattern = /\D/g;
+const InputPhone = ({phoneValue, setPhoneValue}: IInputPhoneProps ): JSX.Element => {
 
-  const getInputNumbersValue = (value: string) => {
+  const pattern: RegExp = /\D/g;
+
+  const getInputNumbersValue = (value: string): string => {
     return value.replace(pattern, "");
   }
 
   const handlePhoneInput = (event: React.ChangeEvent<HTMLInputElement>) => {
 
-    let input = event.target;
-    let inputNumbersValue = getInputNumbersValue(input.value);
-    let formattedInputValue = '';
-    const selectionStart = input.selectionStart;
+    let input: HTMLInputElement = event.target;
+    let inputNumbersValue: string = getInputNumbersValue(input.value);
+    let formattedInputValue: string = '';
+    const selectionStart: number | null = input.selectionStart;
 
     if (!inputNumbersValue) {
       return input.value = '';
@@ -29,7 +34,7 @@ const InputPhone = ({phoneValue, setPhoneValue}: { phoneValue: any, setPhoneValu
         inputNumbersValue = '7' + inputNumbersValue;
       }
 
-      let firstSymbols = (inputNumbersValue[0] === '8') ? '8' : '+7';
+      let firstSymbols: string = (inputNumbersValue[0] === '8') ? '8' : '+7';
       formattedInputValue = firstSymbols + ' ';
 
       if (inputNumbersValue.length > 1) {
@@ -57,7 +62,7 @@ const InputPhone = ({phoneValue, setPhoneValue}: { phoneValue: any, setPhoneValu
   }
 
   const handlePhoneKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    const input = event.target as HTMLInputElement;
+    const input: HTMLInputElement = event.target as HTMLInputElement;
     if (event.key === 'Backspace' && getInputNumbersValue(input.value).length === 1) {
       input.value = '';
     }

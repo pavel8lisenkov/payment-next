@@ -8,13 +8,14 @@ import InputAmount from '@/components/Input-amount/Input-amount';
 import Button from '@/components/Button/Button';
 import ButtonClose from '@/components/Button-close/Button-close';
 import { GetStaticProps } from 'next';
+import { Operator } from '@/types';
 
-export const getStaticPaths = async () => {
+export const getStaticPaths = async (): Promise<object> => {
   try {
     const res = await fetch('http://localhost:5000/items');
     const data = await res.json();
 
-    const paths = data.map((operator: any) => {
+    const paths = data.map((operator: Operator) => {
       return {
         params: {id: operator.id}
       }
@@ -31,10 +32,9 @@ export const getStaticPaths = async () => {
   }
 }
 
-export const getStaticProps:GetStaticProps = async (context: any) => {
+export const getStaticProps: GetStaticProps<{ operator: Operator[] }> = async (context: any) => {
   try {
     const id = context.params.id;
-
     const res = await fetch(`http://localhost:5000/items/${id}`);
     const data = await res.json();
 
@@ -48,9 +48,9 @@ export const getStaticProps:GetStaticProps = async (context: any) => {
   }
 }
 
-const Pay = ({ operator }: any ) => {
-  const [phoneValue, setPhoneValue] = useState('');
-  const [amountValue, setAmountValue] = useState('');
+const Pay = ({ operator }: any ): JSX.Element => {
+  const [phoneValue, setPhoneValue] = useState<string>('');
+  const [amountValue, setAmountValue] = useState<string>('');
 
   return (
     <>

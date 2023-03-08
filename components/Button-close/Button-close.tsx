@@ -1,9 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import style from './Button-close.module.css';
 import { useRouter } from 'next/router';
-import { redirect } from 'next/navigation';
 
-const ButtonClose = () => {
+const ButtonClose = (): JSX.Element => {
   const router = useRouter();
 
   return (

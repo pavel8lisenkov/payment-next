@@ -1,22 +1,26 @@
-import React from "react";
 import style from './Input-amount.module.css';
 
-const InputAmount = ({ amountValue, setAmountValue }: { amountValue: string, setAmountValue: any }) => {
+type IInputAmountProps = {
+  amountValue: string,
+  setAmountValue: any
+}
 
-  const pattern = /\D/g;
+const InputAmount = ({ amountValue, setAmountValue }: IInputAmountProps ): JSX.Element => {
 
-  const getInputNumbersValue = (value: any) => {
+  const pattern: RegExp = /\D/g;
+
+  const getInputNumbersValue = (value: any): number => {
     return value.replace(pattern, "");
   }
 
-  const handleAmountInput = (event: any) => {
-    let input = event.target;
-    let inputNumbersValue = getInputNumbersValue(input.value);
+  const handleAmountInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+    let input: HTMLInputElement = event.target;
+    let inputNumbersValue: number = getInputNumbersValue(input.value);
 
     if (inputNumbersValue > 1000) {
-      input.value = 1000;
+      input.value = '1000';
     } else if (inputNumbersValue < 1) {
-      input.value = 1;
+      input.value = '1';
     }
 
     if (!inputNumbersValue) {

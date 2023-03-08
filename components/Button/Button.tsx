@@ -1,17 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import style from './Button.module.css';
 import Spinner from "./Spinner";
 import { useRouter } from "next/router";
 
-const Button = ({ phoneValue, setPhoneValue, amountValue, setAmountValue }: { phoneValue: any, setPhoneValue: any, amountValue: any, setAmountValue: any }) => {
+type IButtonProps = {
+  phoneValue: string,
+  setPhoneValue: any,
+  amountValue: string,
+  setAmountValue: any
+}
+
+const Button = ({ phoneValue, setPhoneValue, amountValue, setAmountValue }: IButtonProps ): JSX.Element => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  const getRandomNum = (min = 1, max = 2) => {
+  const getRandomNum = (min: number = 1, max: number = 2): number => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
-  const randomPay = (num: number) => {
+  const randomPay = (num: number): void => {
     if (num === 1) {
       alert(`Оплата по номеру ${phoneValue} на сумму ${amountValue}₽ не прошла, попробуйте еще раз.`);
     } else if (num === 2) {
@@ -22,9 +29,9 @@ const Button = ({ phoneValue, setPhoneValue, amountValue, setAmountValue }: { ph
     }
   }
 
-  const payAttempt = (event: any) => {
+  const payAttempt = (event: any): void => {
 
-    const getResp = (event: any) => {
+    const getResp = (event: any): void => {
       const p = new Promise<void>(function (resolve, reject) {
         setLoading(true);
         setTimeout(() => {
@@ -41,10 +48,9 @@ const Button = ({ phoneValue, setPhoneValue, amountValue, setAmountValue }: { ph
       })
     }
 
-    const isStartsSeven = phoneValue[1] === '7' && phoneValue.length === 18;
-    const isStartsEight = phoneValue[0] === '8' && phoneValue.length === 17;
-    const isNotRussianPhoneNumber = phoneValue[0] === '+' && phoneValue[1] !== '7' && phoneValue.length === 12;
-
+    const isStartsSeven: boolean = phoneValue[1] === '7' && phoneValue.length === 18;
+    const isStartsEight: boolean = phoneValue[0] === '8' && phoneValue.length === 17;
+    const isNotRussianPhoneNumber: boolean = phoneValue[0] === '+' && phoneValue[1] !== '7' && phoneValue.length === 12;
 
     if ((amountValue.length > 0) && (isStartsSeven || isStartsEight || isNotRussianPhoneNumber)) getResp(event);
   };

@@ -1,7 +1,6 @@
 import style from './Title.module.css';
 
-
-const Title = () => {
+const Title = (): JSX.Element => {
   return (
     <h1 className={style.title}>Терминал оплаты</h1>
   )

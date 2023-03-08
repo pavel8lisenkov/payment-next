@@ -4,8 +4,10 @@ import favicon from '@/public/favicon.ico';
 import style from '@/styles/Home.module.css';
 import Title from '@/components/Title/Title';
 import Link from 'next/link';
+import { GetStaticProps } from 'next';
+import { Operator } from '@/types';
 
-export const getStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   try {
     const res = await fetch('http://localhost:5000/items');
     const data = await res.json();
@@ -21,7 +23,7 @@ export const getStaticProps = async () => {
 
 }
 
-const Home = ( {operators}: any ) => {
+const Home = ( { operators }: any ): JSX.Element => {
 
   return (
     <>
@@ -32,9 +34,9 @@ const Home = ( {operators}: any ) => {
       <main className={style.container}>
         <Title />
         <div className={style.list}>
-          {operators.map((operator: any) => {
+          {operators.map((operator: Operator) => {
             return (
-              <Link href={`${operator.id}`} key={operator.id} className={style.item}>
+              <Link href={`/operator/${operator.id}`} key={operator.id} className={style.item}>
                 <div>
                   <Image
                     src={`/.${operator.image}`}
