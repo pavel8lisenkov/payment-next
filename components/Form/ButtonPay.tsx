@@ -1,17 +1,43 @@
-import React, { useState } from "react";
-import style from './Button.module.css';
-import Spinner from "./Spinner";
 import { useRouter } from "next/router";
+import styled from "styled-components";
+
+const StyledButton = styled.button`
+  width: 100%;
+  padding: 13px;
+  border-radius: 8px;
+  background: #00afefd5;
+  font-size: 18px;
+  font-weight: 400;
+  color: #ffffff;
+  transition: .2s ease-in-out;
+
+  &:hover:not(:disabled) {
+    background: #00aeef;
+    -webkit-box-shadow: 0 0 5px #00aeef;
+    -moz-box-shadow: 0 0 5px #00aeef;
+    box-shadow: 0 0 5px #00aeef;
+  }
+
+  &:active:not(:disabled) {
+    transform: scale(0.96);
+  }
+
+  &:disabled {
+    background: rgba(0, 0, 0, 0.4);
+  }
+`
 
 type IButtonProps = {
   phoneValue: string,
   setPhoneValue: any,
   amountValue: string,
-  setAmountValue: any
+  setAmountValue: any,
+  setLoading: any,
+  children: any,
+  loading: boolean
 }
 
-const Button = ({ phoneValue, setPhoneValue, amountValue, setAmountValue }: IButtonProps ): JSX.Element => {
-  const [loading, setLoading] = useState(false);
+const ButtonPay = ({phoneValue, setPhoneValue, amountValue, setAmountValue, setLoading, children, loading }: IButtonProps ): JSX.Element => {
   const router = useRouter();
 
   const getRandomNum = (min: number = 1, max: number = 2): number => {
@@ -55,11 +81,7 @@ const Button = ({ phoneValue, setPhoneValue, amountValue, setAmountValue }: IBut
     if ((amountValue.length > 0) && (isStartsSeven || isStartsEight || isNotRussianPhoneNumber)) getResp(event);
   };
 
-  return (
-    <button type="submit" className={style.button} onClick={event => payAttempt(event)} disabled={ loading } >
-      {loading ? <Spinner /> : 'Оплатить'}
-    </button>
-  )
+  return <StyledButton onClick={event => payAttempt(event)} disabled={ loading }>{children}</StyledButton>
 }
 
-export default Button;
+export default ButtonPay;

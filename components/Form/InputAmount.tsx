@@ -1,4 +1,6 @@
-import style from './Input-amount.module.css';
+import InputBlockWrapper from "./Input-styled/InputBlockWrapper";
+import InputWrapper from "./Input-styled/InputWrapper";
+import InputTag from "./Input-styled/InputTag";
 
 type IInputAmountProps = {
   amountValue: string,
@@ -8,7 +10,6 @@ type IInputAmountProps = {
 const InputAmount = ({ amountValue, setAmountValue }: IInputAmountProps ): JSX.Element => {
 
   const pattern: RegExp = /\D/g;
-
   const getInputNumbersValue = (value: any): number => {
     return value.replace(pattern, "");
   }
@@ -31,15 +32,15 @@ const InputAmount = ({ amountValue, setAmountValue }: IInputAmountProps ): JSX.E
   }
 
   return (
-    <div className={style.wrapper}>
-      <div className={style.wrapper__input}>
+    <InputBlockWrapper>
+      <InputWrapper>
         <label htmlFor="amount">Сумма в рублях</label>
-        <input className={style.input} id="amount" type="number" placeholder="Максимальная сумма 1000 ₽" required
+        <InputTag id="amount" type="number" placeholder="Максимальная сумма 1000 ₽" required
           value={amountValue}
           onInput={handleAmountInput}
         />
-      </div>
-    </div>
+      </InputWrapper>
+    </InputBlockWrapper>
   )
 }
 

@@ -1,21 +1,24 @@
 import React, { useState } from 'react';
-import Head from 'next/head';
-import favicon from '@/public/favicon.ico';
-import style from '@/styles/Pay.module.css';
-import Image from 'next/image';
-import InputPhone from '@/components/Input-phone/Input-phone';
-import InputAmount from '@/components/Input-amount/Input-amount';
-import Button from '@/components/Button/Button';
-import ButtonClose from '@/components/Button-close/Button-close';
 import { GetStaticProps } from 'next';
-import { Operator } from '@/types';
+import { Operator } from '../index';
+import { useRouter } from 'next/router';
+import OperatorImage from '@/components/OperatorImage';
+import OperatorName from '@/components/OperatorName';
+import Flex from '@/components/Flex';
+import Form from '@/components/Form/Form-styled/FormBody';
+import FormWrapper from '@/components/Form/Form-styled/FormWrapper';
+import ButtonClose from '@/components/Form/Form-styled/ButtonClose';
+import InputAmount from '@/components/Form/InputAmount';
+import InputPhone from '@/components/Form/InputPhone';
+import ButtonPay from '@/components/Form/ButtonPay';
+import ButtonLoad from "../../components/Form/ButtonLoad";
 
 export const getStaticPaths = async (): Promise<object> => {
   try {
     const res = await fetch('http://localhost:5000/items');
-    const data = await res.json();
+    const operator = await res.json();
 
-    const paths = data.map((operator: Operator) => {
+    const paths = operator.map((operator: Operator) => {
       return {
         params: {id: operator.id}
       }
@@ -36,10 +39,10 @@ export const getStaticProps: GetStaticProps<{ operator: Operator[] }> = async (c
   try {
     const id = context.params.id;
     const res = await fetch(`http://localhost:5000/items/${id}`);
-    const data = await res.json();
+    const operator = await res.json();
 
     return {
-      props: { operator: data }
+      props: { operator }
     }
   } catch {
     return {
@@ -49,33 +52,26 @@ export const getStaticProps: GetStaticProps<{ operator: Operator[] }> = async (c
 }
 
 const Pay = ({ operator }: any ): JSX.Element => {
+  const router = useRouter();
   const [phoneValue, setPhoneValue] = useState<string>('');
   const [amountValue, setAmountValue] = useState<string>('');
+  const [loading, setLoading] = useState(false);
 
   return (
-    <>
-    <Head>
-      <link rel="icon" href={favicon.src} type="image/x-icon" />
-      <title>Страница оплаты</title>
-    </Head>
-    <div className={style.form__wrapper}>
-      <form action="" className={style.form__body}>
-        <ButtonClose />
-        <div className={style.form__header}>
-          <Image
-            src={`/.${operator.image}`}
-            alt={`${operator.name}`}
-            width='70'
-            height='70'
-          />
-          <h2>{operator.name}</h2>
-        </div>
+    <FormWrapper>
+      <Form action="" >
+        <ButtonClose onClick={() => router.push('/')} />
+        <Flex gap={'20px'} >
+          <OperatorImage {...operator} />
+          <OperatorName>{operator.name}</OperatorName>
+        </Flex>
         <InputPhone phoneValue={phoneValue} setPhoneValue={setPhoneValue} />
         <InputAmount amountValue={amountValue} setAmountValue={setAmountValue} />
-        <Button phoneValue={phoneValue} setPhoneValue={setPhoneValue} amountValue={amountValue} setAmountValue={setAmountValue} />
-      </form>
-    </div>
-    </>
+        <ButtonPay phoneValue={phoneValue} setPhoneValue={setPhoneValue} amountValue={amountValue} setAmountValue={setAmountValue} setLoading={setLoading} loading={loading} >
+          {loading ? <ButtonLoad/> : 'Оплатить'}
+        </ButtonPay>
+      </Form>
+    </FormWrapper>
   )
 }
 

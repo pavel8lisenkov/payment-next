@@ -1,5 +1,6 @@
-import React from "react";
-import s from './Input-phone.module.css';
+import InputBlockWrapper from "./Input-styled/InputBlockWrapper";
+import InputWrapper from "./Input-styled/InputWrapper";
+import InputTag from "./Input-styled/InputTag";
 
 type IInputPhoneProps = {
   phoneValue: string,
@@ -57,7 +58,6 @@ const InputPhone = ({phoneValue, setPhoneValue}: IInputPhoneProps ): JSX.Element
       formattedInputValue = '+' + inputNumbersValue.substring(0, 11);
     }
     input.value = formattedInputValue;
-    console.log(event)
     setPhoneValue(input.value);
   }
 
@@ -70,17 +70,17 @@ const InputPhone = ({phoneValue, setPhoneValue}: IInputPhoneProps ): JSX.Element
   }
 
   return (
-    <div className={s.wrapper}>
-      <div className={s.wrapper__input}>
+    <InputBlockWrapper>
+      <InputWrapper>
         <label htmlFor="phone">Номер телефона</label>
-        <input id="phone" type="tel" placeholder="+7 (999)-999-99-99" required
+        <InputTag id="phone" type="tel" placeholder="+7 (999)-999-99-99" required
           pattern="^((8|\+[1-9])[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{10}$"
           value={phoneValue}
           onInput={handlePhoneInput}
           onKeyDown={handlePhoneKeyDown}
         />
-      </div>
-    </div>
+      </InputWrapper>
+    </InputBlockWrapper>
   )
 }
 
