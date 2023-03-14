@@ -1,4 +1,5 @@
 import type { AppProps } from 'next/app'
+import NextNProgress from 'nextjs-progressbar';
 import Head from 'next/head'
 import styled, { createGlobalStyle } from 'styled-components'
 import favicon from '../public/favicon.ico';
@@ -51,7 +52,7 @@ const GlobalStyle = createGlobalStyle`
 const Wrapper = styled.div`
   max-width: 1440px;
   min-height: 100vh;
-  padding: 5rem 100px 10rem;
+  padding: 100px;
   margin: 0px auto;
   display: flex;
   flex-direction: column;
@@ -62,6 +63,7 @@ const Wrapper = styled.div`
 `
 
 export default function App({ Component, pageProps }: AppProps) {
+
   return (
     <>
       <Head>
@@ -69,6 +71,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <title>Payment terminal</title>
         <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500;600;700&display=swap" rel="stylesheet"></link>
       </Head>
+      <NextNProgress />
       <GlobalStyle />
       <Wrapper>
         <Component {...pageProps} />

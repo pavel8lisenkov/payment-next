@@ -11,7 +11,9 @@
     "json-server": "json-server --watch operators-list.json --port 5000",
     "serve": "concurrently \"npm run dev\" \"npm run json-server\"",
     "build-api": "concurrently \"npm run build\" \"npm run json-server\"",
-    "deploy": "gh-pages -d .next"
+    "deploy": "gh-pages -d .next",
+    "export": "next export",
+    "build-export": "concurrently \"npm run build-api\" \"npm run export\""
   },
   "dependencies": {
     "@types/node": "18.14.5",
@@ -20,6 +22,7 @@
     "concurrently": "^7.6.0",
     "json-server": "^0.17.2",
     "next": "13.2.3",
+    "nextjs-progressbar": "^0.0.16",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "styled-components": "^5.3.8",
