@@ -20,12 +20,12 @@ export const getStaticPaths = async (): Promise<object> => {
 
     const paths = operator.map((operator: Operator) => {
       return {
-        params: {id: operator.id}
+        params: { id: operator.id?.toString() }
       }
     })
 
     return {
-      paths: paths,
+      paths,
       fallback: false
     }
   } catch {
@@ -35,10 +35,9 @@ export const getStaticPaths = async (): Promise<object> => {
   }
 }
 
-export const getStaticProps: GetStaticProps<{ operator: Operator[] }> = async (context: any) => {
+export const getStaticProps: GetStaticProps<{ operator: Operator[] }> = async ({params}: any) => {
   try {
-    const id = context.params.id;
-    const res = await fetch(`http://localhost:5000/items/${id}`);
+    const res = await fetch(`http://localhost:5000/items/${params.id}`);
     const operator = await res.json();
 
     return {
@@ -61,7 +60,7 @@ const Pay = ({ operator }: any ): JSX.Element => {
     <FormWrapper>
       <Form action="" >
         <ButtonClose onClick={() => router.push('/')} />
-        <Flex gap={'20px'} >
+        <Flex >
           <OperatorImage {...operator} />
           <OperatorName>{operator.name}</OperatorName>
         </Flex>

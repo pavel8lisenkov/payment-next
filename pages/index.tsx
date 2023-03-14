@@ -38,7 +38,7 @@ const App = ({ operators }: any): JSX.Element => {
     <Title>Выберите оператора</Title>
     <OperatorList>
       {operators.map((operator: Operator) => {
-        return <Link href={`/operator/${operator.id}`} key={operator.id}>
+        return <Link key={operator.id} href={`/operator/${operator.id}`}>
           <OperatorItem {...operator} />
         </Link>
       })}
