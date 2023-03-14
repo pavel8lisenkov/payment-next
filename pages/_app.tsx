@@ -71,9 +71,9 @@ export default function App({ Component, pageProps }: AppProps) {
         <title>Payment terminal</title>
         <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500;600;700&display=swap" rel="stylesheet"></link>
       </Head>
-      <NextNProgress />
       <GlobalStyle />
       <Wrapper>
+        <NextNProgress options={{ showSpinner: false }} />
         <Component {...pageProps} />
       </Wrapper>
     </>
