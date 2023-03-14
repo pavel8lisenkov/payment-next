@@ -1,6 +1,6 @@
 ### Деплой
 
-[Payment-terminal](https://payment-nextjs-sepia.vercel.app/)
+[Payment-terminal](https://payment-terminal-next-sigma.vercel.app/)
 
 ### Команда для запуска >>> npm run serve и открыть [http://localhost:3000](http://localhost:3000)
 
