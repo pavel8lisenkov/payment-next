@@ -26,10 +26,6 @@ const InputPhone = ({phoneValue, setPhoneValue}: IInputPhoneProps ): JSX.Element
       return input.value = '';
     }
 
-    // if (input.value[2] !== '1') {
-    //   return;
-    // }
-
     if (input.value.length !== selectionStart) {
       return;
     }
