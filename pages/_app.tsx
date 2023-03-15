@@ -70,10 +70,10 @@ export default function App({ Component, pageProps }: AppProps) {
         <link rel="icon" href={favicon.src} type="image/x-icon" />
         <title>Payment terminal</title>
         <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500;600;700&display=swap" rel="stylesheet"></link>
-        <NextNProgress options={{ showSpinner: false }} />
       </Head>
       <GlobalStyle />
       <Wrapper>
+        <NextNProgress options={{ showSpinner: false }} />
         <Component {...pageProps} />
       </Wrapper>
     </>
