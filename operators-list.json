@@ -3,22 +3,22 @@
     {
       "id": "1",
       "name": "МТС",
-      "image": "./public/assets/images/mts.png"
+      "image": "mts.png"
     },
     {
       "id": "2",
       "name": "Билайн",
-      "image": "./public/assets/images/beeline.png"
+      "image": "beeline.png"
     },
     {
       "id": "3",
       "name": "Tele2",
-      "image": "./public/assets/images/tele2.png"
+      "image": "tele2.png"
     },
     {
       "id": "4",
       "name": "МегаФон",
-      "image": "./public/assets/images/megafon.png"
+      "image": "megafon.png"
     }
   ]
 }

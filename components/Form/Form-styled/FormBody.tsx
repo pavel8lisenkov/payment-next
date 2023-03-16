@@ -13,6 +13,11 @@ const StyledFormBody: any = styled.form`
   position: relative;
   user-select: none;
 
+  @media (min-width: 380px) and (max-width: 1440px) {
+    gap: calc(10px + (40 - 10) * (100vw - 380px) / (1440 - 380));
+    padding: calc(10px + (30 - 10) * (100vw - 380px) / (1440 - 380));
+  }
+
   div {
     font-size: 18px;
   }
