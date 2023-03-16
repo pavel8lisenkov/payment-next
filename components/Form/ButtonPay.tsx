@@ -37,10 +37,10 @@ type IButtonProps = {
   loading: boolean
 }
 
-const ButtonPay = ({phoneValue, setPhoneValue, amountValue, setAmountValue, setLoading, children, loading }: IButtonProps ): JSX.Element => {
+const ButtonPay = ({ phoneValue, setPhoneValue, amountValue, setAmountValue, setLoading, children, loading }: IButtonProps) => {
   const router = useRouter();
 
-  const getRandomNum = (min: number = 1, max: number = 2): number => {
+  const getRandomNum = (min = 1, max = 2) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
@@ -74,14 +74,14 @@ const ButtonPay = ({phoneValue, setPhoneValue, amountValue, setAmountValue, setL
       })
     }
 
-    const isStartsSeven: boolean = phoneValue[1] === '7' && phoneValue.length === 18;
-    const isStartsEight: boolean = phoneValue[0] === '8' && phoneValue.length === 17;
-    const isNotRussianPhoneNumber: boolean = phoneValue[0] === '+' && phoneValue[1] !== '7' && phoneValue.length === 12;
+    const isStartsSeven = phoneValue[1] === '7' && phoneValue.length === 18;
+    const isStartsEight = phoneValue[0] === '8' && phoneValue.length === 17;
+    const isNotRussianPhoneNumber = phoneValue[0] === '+' && phoneValue[1] !== '7' && phoneValue.length === 12;
 
     if ((amountValue.length > 0) && (isStartsSeven || isStartsEight || isNotRussianPhoneNumber)) getResp(event);
   };
 
-  return <StyledButton onClick={event => payAttempt(event)} disabled={ loading }>{children}</StyledButton>
+  return <StyledButton onClick={event => payAttempt(event)} disabled={loading}>{children}</StyledButton>
 }
 
 export default ButtonPay;

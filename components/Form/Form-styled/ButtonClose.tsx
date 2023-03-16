@@ -31,7 +31,7 @@ const StyledButtonClose: any = styled.div`
   }
 `
 
-const ButtonClose = (props: any): JSX.Element => {
+const ButtonClose = (props: any) => {
   return <StyledButtonClose {...props} />
 }
 

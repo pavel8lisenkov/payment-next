@@ -53,7 +53,7 @@ const StyledFormBody: any = styled.form`
   }
 `
 
-const FormBody = (props: any): JSX.Element => {
+const FormBody = (props: any) => {
   return <StyledFormBody {...props} />
 }
 

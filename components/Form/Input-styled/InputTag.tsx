@@ -16,7 +16,7 @@ const StyledInputTag: any = styled.input`
   }
 `
 
-const InputTag = (props: any): JSX.Element => {
+const InputTag = (props: any) => {
   return <StyledInputTag {...props} />
 }
 

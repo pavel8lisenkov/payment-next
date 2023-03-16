@@ -1,6 +1,6 @@
 import Head from 'next/head';
 
-const HeadTag = ({props}: any): JSX.Element => {
+const HeadTag = ({ props }: any) => {
   return (
     <Head {...props} />
   )

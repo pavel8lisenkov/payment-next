@@ -8,7 +8,7 @@ const StyledInputBlockWrapper: any = styled.div`
   width: 100%;
 `
 
-const InputBlockWrapper = (props: any): JSX.Element => {
+const InputBlockWrapper = (props: any) => {
   return <StyledInputBlockWrapper {...props} />
 }
 

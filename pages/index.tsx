@@ -1,10 +1,9 @@
-import { GetStaticProps } from 'next';
 import Link from 'next/link';
 import styled from 'styled-components';
 import Title from '../components/Title';
 import OperatorItem from '../components/OperatorItem';
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps = async () => {
   try {
     const res = await fetch('http://localhost:5000/items');
     const operators = await res.json();
@@ -19,7 +18,7 @@ export const getStaticProps: GetStaticProps = async () => {
   }
 }
 
-const OperatorList = styled.div `
+const OperatorList = styled.div`
   width: 100%;
   display: flex;
   flex-wrap: wrap;
@@ -33,7 +32,7 @@ export type Operator = {
   image?: string
 }
 
-const App = ({ operators }: any): JSX.Element => {
+const App = ({ operators }: any) => {
   return <>
     <Title>Выберите оператора</Title>
     <OperatorList>

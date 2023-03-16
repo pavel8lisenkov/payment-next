@@ -3,7 +3,7 @@ import OperatorImage from './OperatorImage';
 import OperatorName from './OperatorName';
 import { Operator } from '../pages/index';
 
-const StyledOperatorItem = styled.div `
+const StyledOperatorItem = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
@@ -27,11 +27,11 @@ const StyledOperatorItem = styled.div `
   }
 `
 
-const OperatorItem = ( operator: Operator): JSX.Element => {
+const OperatorItem = (operator: Operator) => {
   return (
     <StyledOperatorItem>
-        <OperatorImage {...operator} />
-        <OperatorName>{operator.name}</OperatorName>
+      <OperatorImage {...operator} />
+      <OperatorName>{operator.name}</OperatorName>
     </StyledOperatorItem>
   )
 }

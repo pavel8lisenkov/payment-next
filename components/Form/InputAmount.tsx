@@ -7,16 +7,16 @@ type IInputAmountProps = {
   setAmountValue: any
 }
 
-const InputAmount = ({ amountValue, setAmountValue }: IInputAmountProps ): JSX.Element => {
+const InputAmount = ({ amountValue, setAmountValue }: IInputAmountProps) => {
 
-  const pattern: RegExp = /\D/g;
-  const getInputNumbersValue = (value: any): number => {
+  const pattern = /\D/g;
+  const getInputNumbersValue = (value: any) => {
     return value.replace(pattern, "");
   }
 
   const handleAmountInput = (event: React.ChangeEvent<HTMLInputElement>) => {
-    let input: HTMLInputElement = event.target;
-    let inputNumbersValue: number = getInputNumbersValue(input.value);
+    let input = event.target;
+    let inputNumbersValue = getInputNumbersValue(input.value);
 
     if (inputNumbersValue > 1000) {
       input.value = '1000';

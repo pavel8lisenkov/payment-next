@@ -9,16 +9,16 @@ type Flexbox = {
 }
 
 const StyledFlex = styled.div<Flexbox>`
-  ${({display, flexDirection, alignItems, gap, justifyContent}) => css`
+  ${({ display, flexDirection, alignItems, gap, justifyContent }) => css`
     display: flex;
     flex-direction: ${flexDirection || 'row'};
     align-items: ${alignItems || 'center'};
     gap: ${gap || '20px'};
-    justify-content: ${ justifyContent || 'center'};
+    justify-content: ${justifyContent || 'center'};
   `}
 `
 
-const Flex = (props: any): JSX.Element => {
+const Flex = (props: any) => {
   return <StyledFlex {...props} />
 }
 

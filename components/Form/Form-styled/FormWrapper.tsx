@@ -12,7 +12,7 @@ const StyledFormWrapper: any = styled.div`
   transition: 0.3s;
 `
 
-const FormWrapper = (props: any): JSX.Element => {
+const FormWrapper = (props: any) => {
   return <StyledFormWrapper {...props} />
 }
 

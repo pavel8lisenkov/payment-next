@@ -26,7 +26,7 @@ const StyledButtonLoad = styled.div`
   animation: ${rotateAnimation} 1s infinite linear;
 `
 
-const ButtonLoad = (): JSX.Element => {
+const ButtonLoad = () => {
   return (
     <StyledButtonLoadWrapper>
       <StyledButtonLoad>

@@ -30,12 +30,12 @@ export const getStaticPaths = async (): Promise<object> => {
     }
   } catch {
     return {
-      params: {id: null}
+      params: { id: null }
     }
   }
 }
 
-export const getStaticProps: GetStaticProps<{ operator: Operator[] }> = async ({params}: any) => {
+export const getStaticProps: GetStaticProps<{ operator: Operator[] }> = async ({ params }: any) => {
   try {
     const res = await fetch(`http://localhost:5000/items/${params.id}`);
     const operator = await res.json();
@@ -50,15 +50,15 @@ export const getStaticProps: GetStaticProps<{ operator: Operator[] }> = async ({
   }
 }
 
-const Pay = ({ operator }: any ): JSX.Element => {
+const Pay = ({ operator }: any) => {
   const router = useRouter();
-  const [phoneValue, setPhoneValue] = useState<string>('');
-  const [amountValue, setAmountValue] = useState<string>('');
+  const [phoneValue, setPhoneValue] = useState('');
+  const [amountValue, setAmountValue] = useState('');
   const [loading, setLoading] = useState(false);
 
   return (
     <FormWrapper>
-      <Form action="" >
+      <Form action="#" >
         <ButtonClose onClick={() => router.push('/')} />
         <Flex >
           <OperatorImage {...operator} />
@@ -67,7 +67,7 @@ const Pay = ({ operator }: any ): JSX.Element => {
         <InputPhone phoneValue={phoneValue} setPhoneValue={setPhoneValue} />
         <InputAmount amountValue={amountValue} setAmountValue={setAmountValue} />
         <ButtonPay phoneValue={phoneValue} setPhoneValue={setPhoneValue} amountValue={amountValue} setAmountValue={setAmountValue} setLoading={setLoading} loading={loading} >
-          {loading ? <ButtonLoad/> : 'Оплатить'}
+          {loading ? <ButtonLoad /> : 'Оплатить'}
         </ButtonPay>
       </Form>
     </FormWrapper>

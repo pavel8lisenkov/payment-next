@@ -4,7 +4,7 @@ const StyledName: any = styled.h2`
   font-weight: 600;
 `
 
-const OperatorName = (props: any): JSX.Element => {
+const OperatorName = (props: any) => {
   return (
     <StyledName {...props} />
   )

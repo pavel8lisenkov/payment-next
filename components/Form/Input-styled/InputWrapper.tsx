@@ -13,7 +13,7 @@ const StyledInputWrapper: any = styled.div`
   }
 `
 
-const InputWrapper = (props: any): JSX.Element => {
+const InputWrapper = (props: any) => {
   return <StyledInputWrapper {...props} />
 }
 

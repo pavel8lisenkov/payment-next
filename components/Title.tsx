@@ -6,10 +6,10 @@ const StyledTitle: any = styled.h1`
   font-weight: 700;
   text-align: center;
   user-select: none;
-  color: ${props=> props.color}
+  color: ${props => props.color}
 `
 
-const Title = (props: any): JSX.Element => {
+const Title = (props: any) => {
   return <StyledTitle {...props} />
 }
 
